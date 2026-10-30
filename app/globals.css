@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Fallback brand colors as RGB channels (overridden at runtime by
+ * app/layout.tsx using the hex values in config/data.json).
+ */
 :root {
-  --color-primary: #8a9ea8;
-  --color-primary-hover: #0369a1;
-  --color-secondary: #0f172a;
-  --color-accent: #f59e0b;
+  --color-primary: 138 158 168;
+  --color-primary-hover: 3 105 161;
+  --color-secondary: 15 23 42;
+  --color-accent: 245 158 11;
 }
 
 @layer base {
@@ -16,5 +20,16 @@
 
   body {
     @apply bg-slate-50 text-slate-900 antialiased selection:bg-brand-primary selection:text-white;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbars on swipeable mobile carousels while keeping scroll */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -3,6 +3,10 @@
 import { CheckCircle2, Lock, PhoneCall, Send } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
 import type { BusinessInfo, LeadFormSection, ServiceItem } from '@/types';
+import { Button, ButtonLink } from './ui/Button';
+import { Container } from './ui/Container';
+import { FloatingInput, FloatingSelect } from './ui/FormField';
+import { SectionHeading } from './ui/SectionHeading';
 
 interface LeadFormProps {
   leadForm: LeadFormSection;
@@ -98,80 +102,42 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
     <section
       id={leadForm.id}
       aria-labelledby="lead-form-heading"
-      className="py-12 sm:py-24 bg-slate-100 scroll-mt-20"
+      className="scroll-mt-24 bg-slate-100 py-12 sm:py-24"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
-          {/* Left Column: Value Proposition & Direct Dispatch Callout */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
-            <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-brand-primary">
-              {leadForm.eyebrow}
-            </p>
-
-            <h2
+      <Container>
+        {/*
+          HyperUI Contact Form layout.
+          DOM order = phone order: heading -> form -> highlights.
+          On lg the form moves to the right column spanning both rows.
+        */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-x-16 lg:gap-y-8">
+          {/* Heading */}
+          <div className="lg:col-span-2">
+            <SectionHeading
               id="lead-form-heading"
-              className="text-2xl sm:text-4xl font-extrabold tracking-tight text-brand-secondary leading-tight text-balance"
-            >
-              {leadForm.heading}
-            </h2>
-
-            <p className="text-sm sm:text-lg text-slate-600 leading-relaxed">
-              {leadForm.subheading}
-            </p>
-
-            {/* Value Highlights List */}
-            <ul className="space-y-3 pt-1 sm:pt-2">
-              {leadForm.highlights.map((highlight) => (
-                <li
-                  key={highlight}
-                  className="flex items-start gap-3 text-sm sm:text-base font-semibold text-slate-800"
-                >
-                  <CheckCircle2
-                    className="h-5 w-5 text-brand-primary shrink-0 mt-0.5"
-                    aria-hidden="true"
-                  />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Direct Phone Dispatch Card */}
-            <aside
-              aria-label="Direct Emergency Dispatch Phone"
-              className="mt-6 sm:mt-8 rounded-2xl bg-brand-secondary text-white p-5 sm:p-6 shadow-lg border border-slate-800"
-            >
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-accent">
-                {business.hours}
-              </p>
-              <p className="mt-1 text-base sm:text-lg font-bold text-white">
-                {business.tagline}
-              </p>
-              <a
-                href={business.phoneHref}
-                className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white font-extrabold px-6 py-3.5 shadow-md transition-colors active:scale-[0.99]"
-              >
-                <PhoneCall className="h-5 w-5 shrink-0" aria-hidden="true" />
-                <span>{business.ctaCallText}</span>
-              </a>
-            </aside>
+              align="left"
+              eyebrow={leadForm.eyebrow}
+              title={leadForm.heading}
+              description={leadForm.subheading}
+            />
           </div>
 
-          {/* Right Column: High-Converting Lead Capture Form */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-10 shadow-xl border border-slate-200">
+          {/* Form card */}
+          <div className="lg:col-span-3 lg:col-start-3 lg:row-span-2 lg:row-start-1">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xl sm:rounded-3xl sm:p-10">
               {isSubmitted ? (
                 <div
                   role="status"
                   aria-live="polite"
-                  className="py-12 text-center space-y-4"
+                  className="space-y-4 py-12 text-center"
                 >
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                    <CheckCircle2 className="h-10 w-10" aria-hidden="true" />
+                  <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                    <CheckCircle2 className="size-10" aria-hidden="true" />
                   </div>
                   <h3 className="text-2xl font-extrabold text-brand-secondary">
                     {leadForm.fields.successHeadline}
                   </h3>
-                  <p className="text-base text-slate-600 max-w-md mx-auto">
+                  <p className="mx-auto max-w-md text-base text-slate-600">
                     {leadForm.fields.successMessage}
                   </p>
                 </div>
@@ -180,14 +146,10 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
                   action={leadForm.actionUrl}
                   method="POST"
                   onSubmit={handleSubmit}
-                  className="space-y-5"
+                  className="space-y-4 sm:space-y-5"
                 >
-                  <input
-                    type="hidden"
-                    name="access_key"
-                    value={resolvedWeb3Key}
-                  />
-                  {/* Anti-Spam Honeypot Field */}
+                  <input type="hidden" name="access_key" value={resolvedWeb3Key} />
+                  {/* Anti-spam honeypot */}
                   <input
                     type="checkbox"
                     name="botcheck"
@@ -202,142 +164,128 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
                     value={`New Service Lead - ${business.name}`}
                   />
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Full Name */}
-                    <div>
-                      <label
-                        htmlFor="lead-name"
-                        className="block text-sm font-bold text-slate-800 mb-2"
-                      >
-                        {leadForm.fields.nameLabel}{' '}
-                        <span className="text-red-600" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        id="lead-name"
-                        name="name"
-                        type="text"
-                        required
-                        autoComplete="name"
-                        placeholder={leadForm.fields.namePlaceholder}
-                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-brand-primary focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
-                      />
-                    </div>
-
-                    {/* Phone Number */}
-                    <div>
-                      <label
-                        htmlFor="lead-phone"
-                        className="block text-sm font-bold text-slate-800 mb-2"
-                      >
-                        {leadForm.fields.phoneLabel}{' '}
-                        <span className="text-red-600" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        id="lead-phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        autoComplete="tel"
-                        placeholder={leadForm.fields.phonePlaceholder}
-                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-brand-primary focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
-                      />
-                    </div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                    <FloatingInput
+                      id="lead-name"
+                      name="name"
+                      type="text"
+                      label={leadForm.fields.nameLabel}
+                      placeholder={leadForm.fields.namePlaceholder}
+                      autoComplete="name"
+                      required
+                    />
+                    <FloatingInput
+                      id="lead-phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      label={leadForm.fields.phoneLabel}
+                      placeholder={leadForm.fields.phonePlaceholder}
+                      autoComplete="tel"
+                      required
+                    />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Zip Code */}
-                    <div>
-                      <label
-                        htmlFor="lead-zip"
-                        className="block text-sm font-bold text-slate-800 mb-2"
-                      >
-                        {leadForm.fields.zipLabel}{' '}
-                        <span className="text-red-600" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        id="lead-zip"
-                        name="zip_code"
-                        type="text"
-                        inputMode="numeric"
-                        pattern="[0-9]{5}"
-                        maxLength={5}
-                        required
-                        autoComplete="postal-code"
-                        placeholder={leadForm.fields.zipPlaceholder}
-                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-brand-primary focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
-                      />
-                    </div>
-
-                    {/* Service Needed Dropdown */}
-                    <div>
-                      <label
-                        htmlFor="lead-service"
-                        className="block text-sm font-bold text-slate-800 mb-2"
-                      >
-                        {leadForm.fields.serviceLabel}{' '}
-                        <span className="text-red-600" aria-hidden="true">
-                          *
-                        </span>
-                      </label>
-                      <select
-                        id="lead-service"
-                        name="service_needed"
-                        required
-                        defaultValue=""
-                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3.5 text-slate-900 focus:border-brand-primary focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
-                      >
-                        <option value="" disabled>
-                          {leadForm.fields.servicePlaceholder}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                    <FloatingInput
+                      id="lead-zip"
+                      name="zip_code"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]{5}"
+                      maxLength={5}
+                      label={leadForm.fields.zipLabel}
+                      placeholder={leadForm.fields.zipPlaceholder}
+                      autoComplete="postal-code"
+                      required
+                    />
+                    <FloatingSelect
+                      id="lead-service"
+                      name="service_needed"
+                      label={leadForm.fields.serviceLabel}
+                      placeholderOption={leadForm.fields.servicePlaceholder}
+                      required
+                    >
+                      {services.map((service) => (
+                        <option key={service.id} value={service.title}>
+                          {service.title}
                         </option>
-                        {services.map((service) => (
-                          <option key={service.id} value={service.title}>
-                            {service.title}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      ))}
+                    </FloatingSelect>
                   </div>
 
                   {errorMessage && (
                     <p
                       role="alert"
-                      className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm font-semibold text-red-700"
+                      className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
                     >
                       {errorMessage}
                     </p>
                   )}
 
-                  {/* Primary Submit Button */}
-                  <button
+                  <Button
                     type="submit"
+                    size="lg"
+                    fullWidth
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover disabled:opacity-60 text-white font-extrabold text-base sm:text-lg px-8 py-4 shadow-lg transition-all active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-primary"
+                    className="rounded-xl font-extrabold shadow-lg"
                   >
-                    <Send className="h-5 w-5" aria-hidden="true" />
+                    <Send className="size-5 shrink-0" aria-hidden="true" />
                     <span>
                       {isSubmitting
                         ? leadForm.fields.submittingText
                         : leadForm.fields.submitButtonText}
                     </span>
-                  </button>
+                  </Button>
 
-                  {/* Privacy Note */}
-                  <p className="flex items-center justify-center gap-1.5 text-xs text-slate-500 text-center pt-1">
-                    <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  <p className="flex items-start justify-center gap-1.5 text-center text-xs leading-relaxed text-slate-500">
+                    <Lock className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
                     <span>{leadForm.fields.privacyNote}</span>
                   </p>
                 </form>
               )}
             </div>
           </div>
+
+          {/* Highlights & direct dispatch */}
+          <div className="space-y-6 lg:col-span-2 lg:col-start-1">
+            <ul className="space-y-3">
+              {leadForm.highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex items-start gap-3 text-sm font-semibold text-slate-800 sm:text-base"
+                >
+                  <CheckCircle2
+                    className="mt-0.5 size-5 shrink-0 text-brand-primary"
+                    aria-hidden="true"
+                  />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+
+            <aside
+              aria-label="Direct Emergency Dispatch Phone"
+              className="rounded-2xl border border-slate-800 bg-brand-secondary p-5 text-white shadow-lg sm:p-6"
+            >
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-accent">
+                {business.hours}
+              </p>
+              <p className="mt-1 text-base font-bold text-white sm:text-lg">
+                {business.tagline}
+              </p>
+              <ButtonLink
+                href={business.phoneHref}
+                size="md"
+                className="mt-4 w-full whitespace-nowrap rounded-xl font-extrabold sm:w-auto"
+              >
+                <PhoneCall className="size-5 shrink-0" aria-hidden="true" />
+                <span>{business.ctaCallText}</span>
+              </ButtonLink>
+            </aside>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

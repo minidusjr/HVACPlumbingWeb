@@ -97,6 +97,8 @@ export interface TestimonialsSection {
   heading: string;
   subheading: string;
   averageRatingText: string;
+  verifiedLabel: string;
+  swipeHint: string;
   items: ReviewItem[];
 }
 

@@ -1,8 +1,20 @@
-import { CheckCircle2, Quote, Star } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Quote, Star } from 'lucide-react';
 import type { TestimonialsSection } from '@/types';
+import { Badge } from './ui/Badge';
+import { Container } from './ui/Container';
+import { SectionHeading } from './ui/SectionHeading';
+import { StarRating } from './ui/StarRating';
 
 interface TestimonialsProps {
   testimonials: TestimonialsSection;
+}
+
+/** "Marcus & Elena Vance" -> "MV" (lightweight avatar, no image requests) */
+function getInitials(name: string): string {
+  const words = name.replace(/[^a-zA-Z\s]/g, ' ').trim().split(/\s+/);
+  const first = words[0]?.[0] ?? '';
+  const last = words.length > 1 ? words[words.length - 1][0] : '';
+  return `${first}${last}`.toUpperCase();
 }
 
 export function Testimonials({ testimonials }: TestimonialsProps) {
@@ -10,96 +22,88 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
     <section
       id={testimonials.id}
       aria-labelledby="testimonials-heading"
-      className="py-12 sm:py-24 bg-brand-secondary text-white scroll-mt-20 relative overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden bg-brand-secondary py-12 text-white sm:py-24"
     >
-      {/* Decorative Background Pattern */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.12),transparent_55%)]"
         aria-hidden="true"
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-brand-accent">
-            <Star className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
-            <span className="leading-snug">{testimonials.averageRatingText}</span>
-          </div>
-
-          <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-sky-300 pt-1 sm:pt-2">
-            {testimonials.eyebrow}
-          </p>
-
-          <h2
-            id="testimonials-heading"
-            className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white text-balance"
-          >
-            {testimonials.heading}
-          </h2>
-
-          <p className="text-sm sm:text-lg text-slate-300 leading-relaxed">
-            {testimonials.subheading}
-          </p>
-        </div>
-
-        {/* Testimonials Grid */}
-        <div className="mt-8 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
-          {testimonials.items.map((review) => (
-            <article
-              key={review.id}
-              className="flex flex-col justify-between rounded-2xl bg-slate-800/90 border border-slate-700 p-5 sm:p-8 shadow-lg"
+      <Container className="relative">
+        <SectionHeading
+          id="testimonials-heading"
+          tone="dark"
+          eyebrow={testimonials.eyebrow}
+          title={testimonials.heading}
+          description={testimonials.subheading}
+          badge={
+            <Badge
+              tone="accent-dark"
+              icon={<Star className="size-4 shrink-0 fill-current" aria-hidden="true" />}
             >
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  {/* Star Rating */}
-                  <div
-                    className="flex items-center gap-1 text-brand-accent"
-                    aria-label={`${review.rating} out of 5 stars`}
-                  >
-                    {Array.from({ length: review.rating }).map((_, idx) => (
-                      <Star
-                        key={idx}
-                        className="h-4 w-4 sm:h-5 sm:w-5 fill-current"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <Quote
-                    className="h-6 w-6 sm:h-8 sm:w-8 text-slate-600 shrink-0"
-                    aria-hidden="true"
-                  />
-                </div>
+              {testimonials.averageRatingText}
+            </Badge>
+          }
+        />
 
-                {/* Service Performed Tag */}
-                <p className="mt-3.5 sm:mt-4 inline-block rounded-lg bg-brand-primary/20 border border-brand-primary/30 px-2.5 py-1 text-xs font-semibold text-sky-200">
-                  {review.servicePerformed}
-                </p>
-
-                {/* Review Body */}
-                <blockquote className="mt-3.5 sm:mt-4 text-sm sm:text-base text-slate-200 leading-relaxed">
-                  &ldquo;{review.comment}&rdquo;
-                </blockquote>
-              </div>
-
-              {/* Reviewer Footer */}
-              <footer className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-700/80 flex items-center justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-white capitalize truncate">
+        {/* HyperUI Reviews: swipeable on phones, 3-column grid from md */}
+        <div
+          role="region"
+          aria-label={testimonials.heading}
+          tabIndex={0}
+          className="scrollbar-none -mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 focus:outline-none sm:-mx-6 sm:mt-16 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:gap-8"
+        >
+          {testimonials.items.map((review) => (
+            <blockquote
+              key={review.id}
+              className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border border-slate-700 bg-slate-800/90 p-5 shadow-lg sm:w-[60%] sm:p-8 md:w-auto"
+            >
+              <div className="flex items-center gap-4">
+                <span
+                  className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-primary text-sm font-extrabold text-white ring-2 ring-white/10 sm:size-14 sm:text-base"
+                  aria-hidden="true"
+                >
+                  {getInitials(review.author)}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <StarRating rating={review.rating} />
+                  <p className="mt-1 truncate text-base font-bold capitalize text-white">
                     {review.author}
                   </p>
-                  <p className="text-xs text-slate-400 truncate">
-                    {review.neighborhood} &bull; {review.date}
-                  </p>
                 </div>
-                <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-emerald-400">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  <span>Verified</span>
-                </span>
+                <Quote
+                  className="size-7 shrink-0 self-start text-slate-600"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-200 sm:text-base">
+                &ldquo;{review.comment}&rdquo;
+              </p>
+
+              <footer className="mt-5 space-y-3 border-t border-slate-700/80 pt-4">
+                <Badge tone="primary-dark" size="sm">
+                  {review.servicePerformed}
+                </Badge>
+                <div className="flex items-center justify-between gap-2 text-xs">
+                  <cite className="truncate not-italic text-slate-400">
+                    {review.neighborhood} &bull; {review.date}
+                  </cite>
+                  <span className="inline-flex shrink-0 items-center gap-1 font-semibold text-emerald-400">
+                    <BadgeCheck className="size-4" aria-hidden="true" />
+                    {testimonials.verifiedLabel}
+                  </span>
+                </div>
               </footer>
-            </article>
+            </blockquote>
           ))}
         </div>
-      </div>
+
+        <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-medium text-slate-400 md:hidden">
+          {testimonials.swipeHint}
+          <ArrowRight className="size-3.5" aria-hidden="true" />
+        </p>
+      </Container>
     </section>
   );
 }

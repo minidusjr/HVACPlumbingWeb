@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import rawData from '@/config/data.json';
+import { hexToRgbChannels } from '@/lib/theme';
 import type { SiteConfig } from '@/types';
 import './globals.css';
 
@@ -58,10 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const themeVariables = {
-    '--color-primary': siteData.theme.primary,
-    '--color-primary-hover': siteData.theme.primaryHover,
-    '--color-secondary': siteData.theme.secondary,
-    '--color-accent': siteData.theme.accent,
+    '--color-primary': hexToRgbChannels(siteData.theme.primary),
+    '--color-primary-hover': hexToRgbChannels(siteData.theme.primaryHover),
+    '--color-secondary': hexToRgbChannels(siteData.theme.secondary),
+    '--color-accent': hexToRgbChannels(siteData.theme.accent),
   } as CSSProperties;
 
   // JSON-LD Structured Data for Local SEO & Google Rich Results
