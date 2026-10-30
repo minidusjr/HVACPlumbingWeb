@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     inlineCss: true,
+    optimizePackageImports: ['lucide-react'],
   },
   images: {
     dangerouslyAllowSVG: true,

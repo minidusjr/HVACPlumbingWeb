@@ -1,9 +1,6 @@
-'use client';
-
 import { Menu, PhoneCall, Wrench, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import type { BusinessInfo } from '@/types';
-import { Button, ButtonLink } from './ui/Button';
+import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 
 interface NavbarProps {
@@ -11,20 +8,6 @@ interface NavbarProps {
 }
 
 export function Navbar({ business }: NavbarProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Close the mobile menu with the Escape key
-  useEffect(() => {
-    if (!isMobileMenuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsMobileMenuOpen(false);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isMobileMenuOpen]);
-
-  const closeMenu = () => setIsMobileMenuOpen(false);
-
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Announcement Banner */}
@@ -43,8 +26,8 @@ export function Navbar({ business }: NavbarProps) {
         </Container>
       </div>
 
-      {/* Glassmorphism Sticky Header */}
-      <div className="border-b border-slate-200/80 bg-white/85 shadow-[0_4px_24px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+      {/* Glassmorphism Sticky Header (Pure Server Component — 0 KB Client JS) */}
+      <div className="relative border-b border-slate-200/80 bg-white/85 shadow-[0_4px_24px_-6px_rgba(15,23,42,0.08)] backdrop-blur-xl">
         <Container className="flex h-16 items-center gap-4 sm:h-20 lg:gap-8">
           {/* Brand */}
           <a
@@ -101,63 +84,59 @@ export function Navbar({ business }: NavbarProps) {
                 <span>{business.ctaCallText}</span>
               </ButtonLink>
 
-              <Button
-                variant="soft"
-                size="icon"
-                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-navigation-menu"
-                aria-label={business.mobileMenuAriaLabel}
-                className="lg:hidden"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="size-5" aria-hidden="true" />
-                ) : (
-                  <Menu className="size-5" aria-hidden="true" />
-                )}
-              </Button>
+              {/* Zero-JS Native HTML5 <details> Mobile Drawer */}
+              <details className="group/menu lg:hidden">
+                <summary
+                  aria-label={business.mobileMenuAriaLabel}
+                  className="inline-flex size-11 cursor-pointer list-none items-center justify-center rounded-xl border border-slate-200/80 bg-gradient-to-b from-white to-slate-100/90 text-slate-700 shadow-[0_1px_0_0_rgba(255,255,255,0.9)_inset,0_2px_6px_rgba(15,23,42,0.06)] transition hover:border-brand-primary/30 hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary [&::-webkit-details-marker]:hidden"
+                >
+                  <Menu
+                    className="size-5 group-open/menu:hidden"
+                    aria-hidden="true"
+                  />
+                  <X
+                    className="hidden size-5 group-open/menu:block"
+                    aria-hidden="true"
+                  />
+                </summary>
+
+                <nav
+                  id="mobile-navigation-menu"
+                  aria-label="Mobile Navigation"
+                  className="absolute inset-x-0 top-full border-t border-slate-200/80 bg-white/95 shadow-2xl backdrop-blur-xl"
+                >
+                  <Container className="py-4">
+                    <ul className="space-y-1.5">
+                      {business.navigation.map((item) => (
+                        <li key={item.href}>
+                          <a
+                            href={item.href}
+                            className="block rounded-xl border border-transparent px-4 py-3 text-base font-bold text-slate-700 transition hover:border-slate-200 hover:bg-slate-50 hover:text-brand-primary"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 space-y-3 border-t border-slate-100 pt-4">
+                      <p className="text-center text-xs font-medium text-slate-500">
+                        {business.hours}
+                      </p>
+                      <ButtonLink
+                        href={business.phoneHref}
+                        size="lg"
+                        fullWidth
+                      >
+                        <PhoneCall className="size-5" aria-hidden="true" />
+                        <span>{business.ctaCallText}</span>
+                      </ButtonLink>
+                    </div>
+                  </Container>
+                </nav>
+              </details>
             </div>
           </div>
         </Container>
-
-        {/* Mobile Dropdown Menu Panel */}
-        {isMobileMenuOpen && (
-          <nav
-            id="mobile-navigation-menu"
-            aria-label="Mobile Navigation"
-            className="border-t border-slate-200/80 bg-white/95 shadow-2xl backdrop-blur-xl lg:hidden"
-          >
-            <Container className="py-4">
-              <ul className="space-y-1.5">
-                {business.navigation.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      onClick={closeMenu}
-                      className="block rounded-xl border border-transparent px-4 py-3 text-base font-bold text-slate-700 transition hover:border-slate-200 hover:bg-slate-50 hover:text-brand-primary"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 space-y-3 border-t border-slate-100 pt-4">
-                <p className="text-center text-xs font-medium text-slate-500">
-                  {business.hours}
-                </p>
-                <ButtonLink
-                  href={business.phoneHref}
-                  onClick={closeMenu}
-                  size="lg"
-                  fullWidth
-                >
-                  <PhoneCall className="size-5" aria-hidden="true" />
-                  <span>{business.ctaCallText}</span>
-                </ButtonLink>
-              </div>
-            </Container>
-          </nav>
-        )}
       </div>
     </header>
   );
