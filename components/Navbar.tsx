@@ -119,7 +119,7 @@ export function Navbar({ business }: NavbarProps) {
                       ))}
                     </ul>
                     <div className="mt-4 space-y-3 border-t border-slate-100 pt-4">
-                      <p className="text-center text-xs font-medium text-slate-500">
+                      <p className="text-center text-xs font-medium text-slate-600">
                         {business.hours}
                       </p>
                       <ButtonLink

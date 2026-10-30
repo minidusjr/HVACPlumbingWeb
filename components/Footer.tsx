@@ -70,7 +70,7 @@ export function Footer({ business, footer }: FooterProps) {
                 {business.name}
               </span>
             </div>
-            <p className="max-w-sm text-xs leading-relaxed text-slate-400 sm:text-sm">
+            <p className="max-w-sm text-xs leading-relaxed text-slate-300 sm:text-sm">
               {footer.description}
             </p>
             <p className="inline-block rounded-xl border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-xs font-bold text-brand-accent shadow-[0_1px_0_0_rgba(255,255,255,0.12)_inset]">
@@ -142,7 +142,7 @@ export function Footer({ business, footer }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-4 border-t border-white/10 pt-6 text-center text-xs text-slate-400 sm:mt-12 sm:flex-row sm:pt-8 sm:text-left">
+        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-4 border-t border-white/10 pt-6 text-center text-xs text-slate-300 sm:mt-12 sm:flex-row sm:pt-8 sm:text-left">
           <p>
             &copy; {currentYear} {footer.copyrightText}
           </p>

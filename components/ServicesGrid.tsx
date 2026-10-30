@@ -47,7 +47,7 @@ export function ServicesGrid({ services, ctaHref }: ServicesGridProps) {
                     <IconRenderer name={service.icon} className="size-6" />
                   </span>
                   <span
-                    className="rounded-full border border-slate-200/80 bg-slate-100/80 px-2.5 py-1 text-[11px] font-extrabold tracking-widest text-slate-400 transition-colors group-hover:border-brand-primary/25 group-hover:bg-brand-primary/10 group-hover:text-brand-primary"
+                    className="rounded-full border border-slate-200/80 bg-slate-100/80 px-2.5 py-1 text-[11px] font-extrabold tracking-widest text-slate-600 transition-colors group-hover:border-brand-primary/25 group-hover:bg-brand-primary/10 group-hover:text-brand-primary"
                     aria-hidden="true"
                   >
                     0{idx + 1}

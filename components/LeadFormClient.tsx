@@ -216,7 +216,7 @@ export function LeadFormClient({
         </span>
       </Button>
 
-      <p className="flex items-start justify-center gap-1.5 text-center text-xs leading-relaxed text-slate-500">
+      <p className="flex items-start justify-center gap-1.5 text-center text-xs leading-relaxed text-slate-600">
         <Lock
           className="mt-0.5 size-3.5 shrink-0 text-brand-primary"
           aria-hidden="true"

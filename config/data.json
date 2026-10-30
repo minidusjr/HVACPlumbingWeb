@@ -11,8 +11,8 @@
     ]
   },
   "theme": {
-    "primary": "#0284c7",
-    "primaryHover": "#0369a1",
+    "primary": "#0369a1",
+    "primaryHover": "#075985",
     "secondary": "#0f172a",
     "accent": "#f59e0b"
   },

@@ -97,7 +97,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
                   {review.servicePerformed}
                 </Badge>
                 <div className="flex items-center justify-between gap-2 text-xs">
-                  <cite className="truncate not-italic font-medium text-slate-400">
+                  <cite className="truncate not-italic font-medium text-slate-300">
                     {review.neighborhood} &bull; {review.date}
                   </cite>
                   <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-0.5 font-bold text-emerald-300">
@@ -110,7 +110,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
           ))}
         </div>
 
-        <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-medium text-slate-400 md:hidden">
+        <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-medium text-slate-300 md:hidden">
           {testimonials.swipeHint}
           <ArrowRight className="size-3.5" aria-hidden="true" />
         </p>

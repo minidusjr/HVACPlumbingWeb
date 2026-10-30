@@ -80,14 +80,17 @@ export function Hero({ hero, business }: HeroProps) {
               </ButtonLink>
             </div>
 
-            <p className="text-center text-xs font-medium text-slate-400 sm:text-left sm:text-sm">
+            <p className="text-center text-xs font-medium text-slate-300 sm:text-left sm:text-sm">
               {hero.secondaryCtaText}
             </p>
 
             {/* Glass Bento Trust Badge Boxes */}
-            <dl className="grid grid-cols-1 gap-3.5 pt-4 sm:grid-cols-3 sm:gap-4">
+            <ul
+              aria-label="Key Trust Guarantees"
+              className="grid grid-cols-1 gap-3.5 pt-4 sm:grid-cols-3 sm:gap-4"
+            >
               {hero.trustBadges.map((badge) => (
-                <div
+                <li
                   key={badge.id}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.09] to-white/[0.03] p-4 backdrop-blur-md shadow-[0_1px_0_0_rgba(255,255,255,0.18)_inset,0_12px_28px_-8px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/50 hover:from-white/[0.13] hover:to-white/[0.05] hover:shadow-[0_1px_0_0_rgba(255,255,255,0.28)_inset,0_18px_36px_-8px_rgba(0,0,0,0.45)]"
                 >
@@ -102,17 +105,17 @@ export function Hero({ hero, business }: HeroProps) {
                       <IconRenderer name={badge.icon} className="size-5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <dt className="text-sm font-extrabold leading-snug text-white sm:text-[15px]">
+                      <p className="text-sm font-extrabold leading-snug text-white sm:text-[15px]">
                         {badge.title}
-                      </dt>
-                      <dd className="mt-0.5 text-xs font-medium leading-relaxed text-slate-300/90">
+                      </p>
+                      <p className="mt-0.5 text-xs font-medium leading-relaxed text-slate-300">
                         {badge.subtitle}
-                      </dd>
+                      </p>
                     </div>
                   </div>
-                </div>
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
 
           {/* Right Column: Framed Glass Visual & Floating Social Proof */}
