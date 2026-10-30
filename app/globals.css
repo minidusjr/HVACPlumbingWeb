@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #8a9ea8;
+  --color-primary-hover: #0369a1;
+  --color-secondary: #0f172a;
+  --color-accent: #f59e0b;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-brand-primary selection:text-white;
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "seo": {
+    "title": "Lone Star Flow Plumbing | 24/7 Emergency Plumber in Dallas, TX",
+    "description": "Licensed, insured, and top-rated Dallas plumbing specialists. Same-day drain cleaning, slab leak detection, water heater repair, and 24/7 emergency dispatch.",
+    "keywords": [
+      "Dallas plumber",
+      "emergency plumbing Dallas TX",
+      "slab leak repair Dallas",
+      "tankless water heater installation Dallas",
+      "drain cleaning DFW"
+    ]
+  },
+  "theme": {
+    "primary": "#0284c7",
+    "primaryHover": "#0369a1",
+    "secondary": "#0f172a",
+    "accent": "#f59e0b"
+  },
+  "business": {
+    "name": "Lone Star Flow Plumbing",
+    "tagline": "Dallas-Fort Worth's Trusted 24/7 Master Plumbers",
+    "phoneDisplay": "(214) 555-0198",
+    "phoneHref": "tel:+12145550198",
+    "email": "dispatch@lonestarflowplumbing.com",
+    "address": "4120 Maple Ave, Suite 200, Dallas, TX 75219",
+    "licenseNumber": "TX Master Plumber License #M-41892",
+    "hours": "Open 24 Hours / 7 Days a Week (Including Holidays)",
+    "ctaCallText": "Call (214) 555-0198",
+    "mobileMenuAriaLabel": "Toggle navigation menu",
+    "navigation": [
+      { "label": "Services", "href": "#services" },
+      { "label": "Reviews", "href": "#reviews" },
+      { "label": "Request Estimate", "href": "#estimate" },
+      { "label": "Service Areas", "href": "#service-areas" }
+    ]
+  },
+  "hero": {
+    "eyebrow": "24/7 Rapid Response Across Dallas & DFW Metroplex",
+    "headline": "Fast, Honest Dallas Plumbing Repairs Done Right the First Time.",
+    "subheadline": "From midnight burst pipes and hidden slab leaks to high-efficiency tankless water heaters—our Texas State Licensed Master Plumbers arrive on time in fully stocked trucks with upfront, flat-rate pricing.",
+    "primaryCtaText": "Get Your Free Upfront Estimate",
+    "primaryCtaHref": "#estimate",
+    "secondaryCtaText": "Or Call Now for 60-Min Emergency Dispatch",
+    "trustBadges": [
+      {
+        "id": "badge-licensed",
+        "icon": "ShieldCheck",
+        "title": "Licensed & Insured",
+        "subtitle": "TX Master License #M-41892"
+      },
+      {
+        "id": "badge-response",
+        "icon": "Clock",
+        "title": "60-Minute Arrival",
+        "subtitle": "24/7 Live Local Dispatch"
+      },
+      {
+        "id": "badge-warranty",
+        "icon": "Award",
+        "title": "100% Guarantee",
+        "subtitle": "Upfront Flat-Rate Pricing"
+      }
+    ],
+    "image": {
+      "src": "/hero-plumber.svg",
+      "alt": "Lone Star Flow Plumbing licensed technician inspecting a residential water system in Dallas, Texas",
+      "badgeTitle": "4.9/5 Average Rating",
+      "badgeSubtitle": "Over 1,400+ Verified Dallas Homeowners Served"
+    }
+  },
+  "services": {
+    "id": "services",
+    "eyebrow": "Comprehensive Plumbing Solutions",
+    "heading": "Expert Residential & Commercial Plumbing Services",
+    "subheading": "Every truck is a rolling warehouse stocked with commercial-grade parts so we can solve 95% of Dallas plumbing emergencies on the very first visit.",
+    "items": [
+      {
+        "id": "emergency-plumbing",
+        "icon": "AlertTriangle",
+        "title": "24/7 Emergency Plumbing",
+        "description": "Burst pipes, overflowing toilets, or main shut-off failures? Our rapid-response Dallas crews are on call day and night with zero overtime surprises.",
+        "ctaText": "Book Emergency Tech"
+      },
+      {
+        "id": "drain-hydro-jetting",
+        "icon": "Droplets",
+        "title": "Drain Cleaning & Hydro-Jetting",
+        "description": "Eliminate stubborn backups, tree root intrusions, and grease buildup permanently using HD fiber-optic sewer cameras and high-pressure hydro-jetting.",
+        "ctaText": "Clear My Drain"
+      },
+      {
+        "id": "water-heaters",
+        "icon": "Flame",
+        "title": "Tank & Tankless Water Heaters",
+        "description": "Same-day repair and code-compliant installation for Rheem, Navien, and Rinnai gas or electric water heaters so your family never runs out of hot water.",
+        "ctaText": "Restore Hot Water"
+      },
+      {
+        "id": "slab-leak-detection",
+        "icon": "Search",
+        "title": "Non-Invasive Slab Leak Detection",
+        "description": "Protect your North Texas foundation. We use acoustic listening equipment and thermal imaging to pinpoint hidden under-slab leaks without wrecking your floors.",
+        "ctaText": "Schedule Leak Scan"
+      },
+      {
+        "id": "sewer-line-repair",
+        "icon": "Pipette",
+        "title": "Trenchless Sewer Line Repair",
+        "description": "Replace cracked cast-iron or clay sewer lines beneath your Dallas yard using cured-in-place pipe (CIPP) lining that preserves your driveway and landscaping.",
+        "ctaText": "Inspect Sewer Line"
+      },
+      {
+        "id": "fixture-repiping",
+        "icon": "Wrench",
+        "title": "Fixture Upgrades & Whole-Home Repiping",
+        "description": "Upgrade low-pressure galvanized pipes to durable PEX-A or copper, and install modern faucets, garbage disposals, and smart leak-shutoff valves.",
+        "ctaText": "Request Upgrade Quote"
+      }
+    ]
+  },
+  "testimonials": {
+    "id": "reviews",
+    "eyebrow": "Verified Neighbor Reviews",
+    "heading": "Why Dallas Homeowners Trust Lone Star Flow",
+    "subheading": "We treat your home like our own—wearing shoe covers, laying down protective drop cloths, and walking you through every option before touching a wrench.",
+    "averageRatingText": "Rated 4.9 Out of 5 Stars Across 1,400+ Local DFW Service Calls",
+    "items": [
+      {
+        "id": "review-1",
+        "author": "Marcus & Elena Vance",
+        "neighborhood": "Lakewood, Dallas, TX",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "servicePerformed": "Acoustic Slab Leak Detection & Reroute",
+        "comment": "Our water bill tripled overnight and we heard running water behind the kitchen wall. Lone Star Flow arrived in 45 minutes, pinpointed the slab leak electronically without jackhammering our hardwood floors, and completed a clean PEX reroute the same afternoon."
+      },
+      {
+        "id": "review-2",
+        "author": "Deborah Thornton",
+        "neighborhood": "Preston Hollow, Dallas, TX",
+        "rating": 5,
+        "date": "1 month ago",
+        "servicePerformed": "Navien Tankless Water Heater Installation",
+        "comment": "Two other Dallas plumbing companies tried to upsell us on unnecessary electrical panel work. Lone Star Flow gave us a transparent flat-rate quote, installed our new tankless system neatly, and hauled away the rusted 50-gallon tank. Spotless workmanship!"
+      },
+      {
+        "id": "review-3",
+        "author": "jason K. Miller",
+        "neighborhood": "Bishop Arts District, Dallas, TX",
+        "rating": 5,
+        "date": "3 weeks ago",
+        "servicePerformed": "24/7 Main Sewer Line Hydro-Jetting",
+        "comment": "Main sewer line backed up on a Sunday evening before family arrived in town. Their dispatcher answered live on the second ring, the master plumber showed us the tree roots on the camera monitor, and cleared the line completely within an hour."
+      }
+    ]
+  },
+  "leadForm": {
+    "id": "estimate",
+    "eyebrow": "Fast & Free Dispatch Request",
+    "heading": "Request Your Upfront Quote or Same-Day Service",
+    "subheading": "Fill out the 30-second form below and our Dallas dispatch desk will call you back within 5 minutes to confirm your appointment window.",
+    "actionUrl": "https://api.web3forms.com/submit",
+    "accessKeyPlaceholder": "YOUR_WEB3FORMS_OR_EMAILJS_ACCESS_KEY",
+    "highlights": [
+      "No dispatch fee with any completed repair",
+      "Upfront written pricing before work begins",
+      "Background-checked, drug-tested Texas Master Plumbers",
+      "2-Year parts and labor warranty on all repairs"
+    ],
+    "fields": {
+      "nameLabel": "Full Name",
+      "namePlaceholder": "e.g., Jordan Reynolds",
+      "phoneLabel": "Best Callback Phone Number",
+      "phonePlaceholder": "(214) 555-0142",
+      "zipLabel": "Dallas / DFW Zip Code",
+      "zipPlaceholder": "75219",
+      "serviceLabel": "Service Needed",
+      "servicePlaceholder": "Select the plumbing issue you are experiencing...",
+      "submitButtonText": "Lock In My Priority Service Window",
+      "submittingText": "Sending to Dispatch...",
+      "privacyNote": "100% Privacy Guaranteed. Your information goes straight to our local Dallas dispatch team and is never shared.",
+      "successHeadline": "Dispatch Request Received!",
+      "successMessage": "Thank you! Our local Dallas coordinator has received your ticket and will call you within 5 minutes."
+    }
+  },
+  "footer": {
+    "description": "Lone Star Flow Plumbing provides code-compliant residential and commercial plumbing repair, drain cleaning, slab leak detection, and water heater installations throughout the Greater Dallas-Fort Worth Metroplex.",
+    "serviceAreasHeading": "Dallas & DFW Service Areas",
+    "contactHeading": "24/7 Dispatch Headquarters",
+    "quickLinksHeading": "Quick Navigation",
+    "serviceAreas": [
+      "Downtown Dallas",
+      "Uptown & Oak Lawn",
+      "Lakewood",
+      "Preston Hollow",
+      "Highland Park",
+      "University Park",
+      "Bishop Arts & Oak Cliff",
+      "Plano",
+      "Frisco",
+      "Richardson",
+      "Irving & Las Colinas",
+      "Garland"
+    ],
+    "copyrightText": "Lone Star Flow Plumbing LLC. All Rights Reserved.",
+    "emergencyBannerText": "Plumbing Emergency in Dallas? Our trucks are rolling 24/7."
+  }
+}
+

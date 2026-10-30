@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="pipeBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="800" height="600" rx="28" fill="url(#bgGrad)" />
+
+  <!-- Subtle Technical Grid Lines -->
+  <g stroke="#334155" stroke-width="1" opacity="0.45">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="0" y1="500" x2="800" y2="500" />
+    <line x1="160" y1="0" x2="160" y2="600" />
+    <line x1="320" y1="0" x2="320" y2="600" />
+    <line x1="480" y1="0" x2="480" y2="600" />
+    <line x1="640" y1="0" x2="640" y2="600" />
+  </g>
+
+  <!-- Glowing Backdrop Circle -->
+  <circle cx="420" cy="300" r="210" fill="#0284c7" opacity="0.15" />
+  <circle cx="420" cy="300" r="145" fill="#38bdf8" opacity="0.1" />
+
+  <!-- Industrial Pipe Network Illustration -->
+  <path d="M120 440 H280 V220 H520 V360 H680" stroke="url(#pipeBlue)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M280 340 H420 V470" stroke="#64748b" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Pipe Flanges & Joints -->
+  <rect x="256" y="295" width="48" height="16" rx="6" fill="#94a3b8" />
+  <rect x="375" y="196" width="16" height="48" rx="6" fill="#94a3b8" />
+  <rect x="496" y="275" width="48" height="16" rx="6" fill="#94a3b8" />
+
+  <!-- Pressure Gauge / Smart Valve -->
+  <circle cx="400" cy="220" r="56" fill="#0f172a" stroke="url(#goldAccent)" stroke-width="10" />
+  <circle cx="400" cy="220" r="40" fill="#f8fafc" />
+  <path d="M400 220 L422 196" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+  <circle cx="400" cy="220" r="7" fill="#0f172a" />
+
+  <!-- Tankless Water Heater Unit Card -->
+  <rect x="470" y="120" width="210" height="270" rx="20" fill="#f8fafc" stroke="#cbd5e1" stroke-width="6" />
+  <rect x="500" y="155" width="150" height="75" rx="10" fill="#0f172a" />
+  <text x="575" y="198" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="26" font-weight="bold">120°F OK</text>
+  <circle cx="540" cy="275" r="16" fill="#0284c7" />
+  <circle cx="610" cy="275" r="16" fill="#f59e0b" />
+  <rect x="515" y="325" width="120" height="14" rx="7" fill="#cbd5e1" />
+  <rect x="535" y="350" width="80" height="10" rx="5" fill="#94a3b8" />
+
+  <!-- Certified Shield Badge -->
+  <g transform="translate(115, 115)">
+    <rect width="210" height="92" rx="16" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <circle cx="46" cy="46" r="24" fill="url(#goldAccent)" />
+    <path d="M36 46 L43 53 L57 39" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="82" y="42" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">TX MASTER</text>
+    <text x="82" y="64" fill="#94a3b8" font-family="sans-serif" font-size="13">24/7 Dispatch Ready</text>
+  </g>
+</svg>
+
