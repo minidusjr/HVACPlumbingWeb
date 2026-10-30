@@ -6,19 +6,19 @@ import type {
 } from 'react';
 
 /*
- * HyperUI "Inputs with label inside" pattern, converted to Tailwind v3.
+ * Modern tactile floating-label inputs.
  * Inputs use text-base (16px) so iOS Safari does not zoom in on focus.
  */
 
 const FIELD_WRAPPER =
-  'relative block rounded-lg border border-slate-300 bg-white shadow-sm transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20';
+  'group relative block rounded-2xl border border-slate-200/90 bg-slate-50/70 shadow-[0_1px_2px_rgba(15,23,42,0.04)_inset] transition-all duration-200 hover:border-slate-300 hover:bg-white focus-within:border-brand-primary focus-within:bg-white focus-within:shadow-[0_0_0_4px_rgb(var(--color-primary)/0.12)]';
 
 const FLOATING_LABEL =
-  'pointer-events-none absolute start-3 top-0 -translate-y-1/2 bg-white px-1 text-xs font-semibold text-slate-700 transition-all';
+  'pointer-events-none absolute start-3.5 top-0 -translate-y-1/2 rounded-full bg-white px-2 text-xs font-bold text-slate-600 transition-all duration-200';
 
 function RequiredMark() {
   return (
-    <span className="text-red-600" aria-hidden="true">
+    <span className="text-red-500" aria-hidden="true">
       {' '}
       *
     </span>
@@ -43,11 +43,11 @@ export function FloatingInput({
         id={id}
         required={required}
         placeholder={placeholder ?? label}
-        className="peer h-14 w-full rounded-lg border-none bg-transparent px-4 pt-3 text-base text-slate-900 placeholder-transparent focus:outline-none focus:placeholder-slate-400"
+        className="peer h-14 w-full rounded-2xl border-none bg-transparent px-4 pt-3 text-base font-medium text-slate-900 placeholder-transparent focus:outline-none focus:placeholder-slate-400"
         {...props}
       />
       <span
-        className={`${FLOATING_LABEL} peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:font-medium peer-placeholder-shown:text-slate-500 peer-focus:top-0 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-brand-primary`}
+        className={`${FLOATING_LABEL} peer-placeholder-shown:top-1/2 peer-placeholder-shown:bg-transparent peer-placeholder-shown:text-sm peer-placeholder-shown:font-medium peer-placeholder-shown:text-slate-500 peer-focus:top-0 peer-focus:bg-white peer-focus:text-xs peer-focus:font-bold peer-focus:text-brand-primary`}
       >
         {label}
         {required && <RequiredMark />}
@@ -77,7 +77,7 @@ export function FloatingSelect({
         id={id}
         required={required}
         defaultValue=""
-        className="peer h-14 w-full appearance-none truncate rounded-lg border-none bg-transparent pe-10 ps-4 pt-1 text-base text-slate-900 invalid:text-slate-400 focus:outline-none"
+        className="peer h-14 w-full appearance-none truncate rounded-2xl border-none bg-transparent pe-10 ps-4 pt-1 text-base font-medium text-slate-900 invalid:text-slate-400 focus:outline-none"
         {...props}
       >
         <option value="" disabled>
@@ -91,9 +91,8 @@ export function FloatingSelect({
       </span>
       <ChevronDown
         aria-hidden="true"
-        className="pointer-events-none absolute end-3 top-1/2 size-5 -translate-y-1/2 text-slate-400"
+        className="pointer-events-none absolute end-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400 transition-transform duration-200 group-focus-within:rotate-180 group-focus-within:text-brand-primary"
       />
     </label>
   );
 }
-

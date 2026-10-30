@@ -5,14 +5,17 @@ type BadgeTone = 'accent-dark' | 'primary-light' | 'primary-dark';
 type BadgeSize = 'sm' | 'md';
 
 const TONES: Record<BadgeTone, string> = {
-  'accent-dark': 'border-white/15 bg-white/10 text-brand-accent',
-  'primary-light': 'border-brand-primary/20 bg-brand-primary/10 text-brand-primary',
-  'primary-dark': 'border-brand-primary/30 bg-brand-primary/20 text-sky-200',
+  'accent-dark':
+    'border-white/15 bg-gradient-to-r from-white/[0.12] to-white/[0.05] text-brand-accent shadow-[0_1px_0_0_rgba(255,255,255,0.2)_inset,0_4px_12px_rgba(0,0,0,0.25)] backdrop-blur-md',
+  'primary-light':
+    'border-brand-primary/25 bg-gradient-to-r from-brand-primary/15 to-brand-primary/5 text-brand-primary shadow-[0_1px_0_0_rgba(255,255,255,0.8)_inset]',
+  'primary-dark':
+    'border-brand-primary/35 bg-gradient-to-r from-brand-primary/25 to-brand-primary/10 text-sky-200 shadow-[0_1px_0_0_rgba(255,255,255,0.12)_inset]',
 };
 
 const SIZES: Record<BadgeSize, string> = {
-  sm: 'px-2.5 py-0.5 text-xs',
-  md: 'px-3 py-1 text-xs sm:text-sm',
+  sm: 'px-3 py-1 text-xs',
+  md: 'px-3.5 py-1.5 text-xs sm:text-sm',
 };
 
 interface BadgeProps {
@@ -23,7 +26,7 @@ interface BadgeProps {
   children: ReactNode;
 }
 
-/** HyperUI pill badge: `inline-flex items-center rounded-full px-2.5 py-0.5` */
+/** Modern glassmorphism pill badge with inner specular rim. */
 export function Badge({
   tone = 'accent-dark',
   size = 'md',
@@ -34,7 +37,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center gap-1.5 rounded-full border font-semibold',
+        'inline-flex max-w-full items-center gap-2 rounded-full border font-bold tracking-tight',
         TONES[tone],
         SIZES[size],
         className

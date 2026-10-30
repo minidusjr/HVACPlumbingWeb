@@ -28,10 +28,22 @@
     "ctaCallText": "Call (214) 555-0198",
     "mobileMenuAriaLabel": "Toggle navigation menu",
     "navigation": [
-      { "label": "Services", "href": "#services" },
-      { "label": "Reviews", "href": "#reviews" },
-      { "label": "Request Estimate", "href": "#estimate" },
-      { "label": "Service Areas", "href": "#service-areas" }
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Reviews",
+        "href": "#reviews"
+      },
+      {
+        "label": "Request Estimate",
+        "href": "#estimate"
+      },
+      {
+        "label": "Service Areas",
+        "href": "#service-areas"
+      }
     ]
   },
   "hero": {
@@ -45,20 +57,17 @@
       {
         "id": "badge-licensed",
         "icon": "ShieldCheck",
-        "title": "Licensed & Insured",
-        "subtitle": "TX Master License #M-41892"
+        "title": "Licensed & Insured"
       },
       {
         "id": "badge-response",
         "icon": "Clock",
-        "title": "60-Minute Arrival",
-        "subtitle": "24/7 Live Local Dispatch"
+        "title": "60-Minute Arrival"
       },
       {
         "id": "badge-warranty",
         "icon": "Award",
-        "title": "100% Guarantee",
-        "subtitle": "Upfront Flat-Rate Pricing"
+        "title": "100% Guarantee"
       }
     ],
     "image": {
@@ -204,8 +213,7 @@
       "Irving & Las Colinas",
       "Garland"
     ],
-    "copyrightText": "Lone Star Flow Plumbing LLC. All Rights Reserved.",
+    "copyrightText": "Developed by Minidu Hettiarachchi. All Rights Reserved.",
     "emergencyBannerText": "Plumbing Emergency in Dallas? Our trucks are rolling 24/7."
   }
 }
-
