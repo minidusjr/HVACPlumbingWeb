@@ -13,36 +13,85 @@ interface LeadFormProps {
 export function LeadForm({ leadForm, services, business }: LeadFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const resolvedAccessKey =
+  const emailJsServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const emailJsTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const emailJsPublicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+  const resolvedWeb3Key =
     process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
     leadForm.accessKeyPlaceholder;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     const formData = new FormData(event.currentTarget);
 
-    // If a real Web3Forms/EmailJS key is configured, post to actionUrl;
-    // otherwise simulate instant lead capture for preview/demo reliability.
-    const accessKey = formData.get('access_key') as string;
-    if (
-      accessKey &&
-      accessKey !== 'YOUR_WEB3FORMS_OR_EMAILJS_ACCESS_KEY'
-    ) {
-      try {
-        await fetch(leadForm.actionUrl, {
+    const isEmailJsConfigured =
+      emailJsServiceId &&
+      emailJsTemplateId &&
+      emailJsPublicKey &&
+      emailJsServiceId !== 'YOUR_EMAILJS_SERVICE_ID' &&
+      emailJsTemplateId !== 'YOUR_EMAILJS_TEMPLATE_ID' &&
+      emailJsPublicKey !== 'YOUR_EMAILJS_PUBLIC_KEY';
+
+    const isWeb3FormsConfigured =
+      resolvedWeb3Key &&
+      resolvedWeb3Key !== 'YOUR_WEB3FORMS_OR_EMAILJS_ACCESS_KEY';
+
+    try {
+      if (isEmailJsConfigured) {
+        // Send via official EmailJS REST API
+        const response = await fetch(
+          'https://api.emailjs.com/api/v1.0/email/send',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              service_id: emailJsServiceId,
+              template_id: emailJsTemplateId,
+              user_id: emailJsPublicKey,
+              template_params: {
+                business_name: business.name,
+                from_name: formData.get('name'),
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                zip_code: formData.get('zip_code'),
+                service_needed: formData.get('service_needed'),
+                subject: `New Service Lead - ${business.name}`,
+              },
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to send lead via EmailJS.');
+        }
+      } else if (isWeb3FormsConfigured) {
+        // Fallback to Web3Forms endpoint if configured
+        const response = await fetch(leadForm.actionUrl, {
           method: 'POST',
           body: formData,
         });
-      } catch {
-        // Fallback gracefully to confirmation UI
-      }
-    }
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+        if (!response.ok) {
+          throw new Error('Failed to send lead via Web3Forms.');
+        }
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      setErrorMessage(
+        `Could not submit online right now. Please call us directly at ${business.phoneDisplay}.`
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -133,13 +182,12 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
                   onSubmit={handleSubmit}
                   className="space-y-5"
                 >
-                  {/* Generic Placeholder Key for Web3Forms / EmailJS Integration */}
                   <input
                     type="hidden"
                     name="access_key"
-                    value={resolvedAccessKey}
+                    value={resolvedWeb3Key}
                   />
-                  {/* Anti-Spam Honeypot Field for Web3Forms */}
+                  {/* Anti-Spam Honeypot Field */}
                   <input
                     type="checkbox"
                     name="botcheck"
@@ -226,7 +274,7 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
                       />
                     </div>
 
-                    {/* Service Needed Dropdown (Dynamically Mapped from Services Array) */}
+                    {/* Service Needed Dropdown */}
                     <div>
                       <label
                         htmlFor="lead-service"
@@ -256,6 +304,15 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
                     </div>
                   </div>
 
+                  {errorMessage && (
+                    <p
+                      role="alert"
+                      className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm font-semibold text-red-700"
+                    >
+                      {errorMessage}
+                    </p>
+                  )}
+
                   {/* Primary Submit Button */}
                   <button
                     type="submit"
@@ -284,4 +341,3 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
     </section>
   );
 }
-
