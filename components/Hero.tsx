@@ -12,7 +12,7 @@ export function Hero({ hero, business }: HeroProps) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden bg-brand-secondary text-white py-12 sm:py-16 lg:py-24"
+      className="relative overflow-hidden bg-brand-secondary text-white py-8 sm:py-16 lg:py-24"
     >
       {/* Subtle Decorative Gradient Radial Highlight */}
       <div
@@ -21,41 +21,41 @@ export function Hero({ hero, business }: HeroProps) {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Left Column: Primary Copy, CTAs & 3 Trust Badges */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-1.5 text-xs sm:text-sm font-semibold text-brand-accent">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-7">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-accent max-w-full">
               <span
-                className="h-2 w-2 rounded-full bg-brand-accent"
+                className="h-2 w-2 shrink-0 rounded-full bg-brand-accent"
                 aria-hidden="true"
               />
-              <span>{hero.eyebrow}</span>
+              <span className="leading-snug">{hero.eyebrow}</span>
             </div>
 
             <h1
               id="hero-heading"
-              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
+              className="text-[28px] sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] sm:leading-[1.12] text-balance"
             >
               {hero.headline}
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl">
               {hero.subheadline}
             </p>
 
-            {/* Massive Primary Call-to-Action Button & Direct Phone Link */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            {/* Primary Call-to-Action Button & Direct Phone Link */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
               <a
                 href={hero.primaryCtaHref}
-                className="inline-flex items-center justify-center gap-3 rounded-2xl bg-brand-primary hover:bg-brand-primary-hover text-white font-extrabold text-lg sm:text-xl px-8 py-5 shadow-xl shadow-black/25 transition-all hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-accent"
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-brand-primary hover:bg-brand-primary-hover text-white font-extrabold text-base sm:text-xl px-6 py-4 sm:px-8 sm:py-5 shadow-xl shadow-black/25 transition-all active:scale-[0.99] sm:hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-accent text-center"
               >
                 <span>{hero.primaryCtaText}</span>
-                <ArrowRight className="h-6 w-6 shrink-0" aria-hidden="true" />
+                <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 shrink-0" aria-hidden="true" />
               </a>
 
               <a
                 href={business.phoneHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-base sm:text-lg px-6 py-5 transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-base sm:text-lg px-6 py-3.5 sm:py-5 transition-colors active:scale-[0.99]"
               >
                 <PhoneCall
                   className="h-5 w-5 text-brand-accent shrink-0"
@@ -65,25 +65,28 @@ export function Hero({ hero, business }: HeroProps) {
               </a>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-300 font-medium">
+            <p className="text-xs sm:text-sm text-slate-300 font-medium text-center sm:text-left">
               {hero.secondaryCtaText} &bull; {business.hours}
             </p>
 
             {/* 3 Trust Badge Icons (Lucide) */}
-            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/15">
+            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-5 border-t border-white/15">
               {hero.trustBadges.map((badge) => (
                 <div
                   key={badge.id}
-                  className="flex items-start gap-3.5 rounded-xl bg-white/5 p-4 border border-white/10"
+                  className="flex items-center sm:flex-col sm:items-start xl:flex-row xl:items-center gap-3.5 sm:gap-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.09] px-4 py-3.5 sm:p-4 border border-white/10 transition-colors"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-primary/25 text-brand-accent">
-                    <IconRenderer name={badge.icon} className="h-6 w-6" />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/20 border border-brand-primary/30 text-brand-accent shadow-inner">
+                    <IconRenderer
+                      name={badge.icon}
+                      className="h-5 w-5 sm:h-6 sm:w-6"
+                    />
                   </div>
-                  <div>
-                    <dt className="text-sm font-bold text-white">
+                  <div className="min-w-0 flex-1">
+                    <dt className="text-sm sm:text-[15px] font-extrabold text-white leading-snug">
                       {badge.title}
                     </dt>
-                    <dd className="text-xs text-slate-300 mt-0.5">
+                    <dd className="text-xs text-slate-300/90 font-medium mt-0.5 leading-relaxed">
                       {badge.subtitle}
                     </dd>
                   </div>
@@ -94,8 +97,8 @@ export function Hero({ hero, business }: HeroProps) {
 
           {/* Right Column: Optimized Next/Image Visual & Floating Social Proof */}
           <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
-              <div className="relative overflow-hidden rounded-3xl border-2 border-white/15 bg-slate-900 shadow-2xl">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-white/15 bg-slate-900 shadow-2xl">
                 <Image
                   src={hero.image.src}
                   alt={hero.image.alt}
@@ -108,16 +111,16 @@ export function Hero({ hero, business }: HeroProps) {
               </div>
 
               {/* Floating Verification Card */}
-              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-5 sm:left-6 sm:right-6 rounded-2xl bg-white text-slate-900 p-4 sm:p-5 shadow-xl border border-slate-200 flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm sm:text-base font-extrabold text-brand-secondary">
+              <div className="mt-3 sm:mt-0 sm:absolute sm:-bottom-5 sm:left-6 sm:right-6 rounded-2xl bg-white text-slate-900 p-3.5 sm:p-5 shadow-xl border border-slate-200 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-sm sm:text-base font-extrabold text-brand-secondary leading-tight">
                     {hero.image.badgeTitle}
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-600 font-medium">
+                  <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5 leading-snug">
                     {hero.image.badgeSubtitle}
                   </p>
                 </div>
-                <span className="inline-flex shrink-0 items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-extrabold text-amber-900">
+                <span className="inline-flex shrink-0 items-center rounded-full bg-amber-100 px-2.5 py-1 text-xs font-extrabold text-amber-900">
                   ★★★★★
                 </span>
               </div>
@@ -128,4 +131,3 @@ export function Hero({ hero, business }: HeroProps) {
     </section>
   );
 }
-
