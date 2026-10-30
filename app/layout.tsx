@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import type { CSSProperties } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import rawData from '@/config/data.json';
 import type { SiteConfig } from '@/types';
 import './globals.css';
@@ -48,6 +49,8 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+
+
 
 export default function RootLayout({
   children,
@@ -108,6 +111,7 @@ export default function RootLayout({
 
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

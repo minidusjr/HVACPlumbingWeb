@@ -98,29 +98,29 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
     <section
       id={leadForm.id}
       aria-labelledby="lead-form-heading"
-      className="py-16 sm:py-24 bg-slate-100 scroll-mt-20"
+      className="py-12 sm:py-24 bg-slate-100 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
           {/* Left Column: Value Proposition & Direct Dispatch Callout */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
             <p className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-brand-primary">
               {leadForm.eyebrow}
             </p>
 
             <h2
               id="lead-form-heading"
-              className="text-2xl sm:text-4xl font-extrabold tracking-tight text-brand-secondary leading-tight"
+              className="text-2xl sm:text-4xl font-extrabold tracking-tight text-brand-secondary leading-tight text-balance"
             >
               {leadForm.heading}
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 leading-relaxed">
               {leadForm.subheading}
             </p>
 
             {/* Value Highlights List */}
-            <ul className="space-y-3.5 pt-2">
+            <ul className="space-y-3 pt-1 sm:pt-2">
               {leadForm.highlights.map((highlight) => (
                 <li
                   key={highlight}
@@ -138,19 +138,19 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
             {/* Direct Phone Dispatch Card */}
             <aside
               aria-label="Direct Emergency Dispatch Phone"
-              className="mt-8 rounded-2xl bg-brand-secondary text-white p-6 shadow-lg border border-slate-800"
+              className="mt-6 sm:mt-8 rounded-2xl bg-brand-secondary text-white p-5 sm:p-6 shadow-lg border border-slate-800"
             >
               <p className="text-xs font-bold uppercase tracking-wider text-brand-accent">
                 {business.hours}
               </p>
-              <p className="mt-1 text-lg font-bold text-white">
+              <p className="mt-1 text-base sm:text-lg font-bold text-white">
                 {business.tagline}
               </p>
               <a
                 href={business.phoneHref}
-                className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white font-extrabold px-6 py-3.5 shadow-md transition-colors"
+                className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white font-extrabold px-6 py-3.5 shadow-md transition-colors active:scale-[0.99]"
               >
-                <PhoneCall className="h-5 w-5" aria-hidden="true" />
+                <PhoneCall className="h-5 w-5 shrink-0" aria-hidden="true" />
                 <span>{business.ctaCallText}</span>
               </a>
             </aside>
@@ -158,7 +158,7 @@ export function LeadForm({ leadForm, services, business }: LeadFormProps) {
 
           {/* Right Column: High-Converting Lead Capture Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-white p-6 sm:p-10 shadow-xl border border-slate-200">
+            <div className="rounded-2xl sm:rounded-3xl bg-white p-5 sm:p-10 shadow-xl border border-slate-200">
               {isSubmitted ? (
                 <div
                   role="status"
