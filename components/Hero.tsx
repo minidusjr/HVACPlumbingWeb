@@ -70,20 +70,23 @@ export function Hero({ hero, business }: HeroProps) {
             </p>
 
             {/* 3 Trust Badge Icons (Lucide) */}
-            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-white/15">
+            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-5 border-t border-white/15">
               {hero.trustBadges.map((badge) => (
                 <div
                   key={badge.id}
-                  className="flex items-center sm:items-start gap-3.5 rounded-xl bg-white/5 px-4 py-3 sm:p-4 border border-white/10"
+                  className="flex items-center sm:flex-col sm:items-start xl:flex-row xl:items-center gap-3.5 sm:gap-3 rounded-2xl bg-white/[0.06] hover:bg-white/[0.09] px-4 py-3.5 sm:p-4 border border-white/10 transition-colors"
                 >
-                  <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg bg-brand-primary/25 text-brand-accent">
-                    <IconRenderer name={badge.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/20 border border-brand-primary/30 text-brand-accent shadow-inner">
+                    <IconRenderer
+                      name={badge.icon}
+                      className="h-5 w-5 sm:h-6 sm:w-6"
+                    />
                   </div>
-                  <div className="min-w-0">
-                    <dt className="text-sm font-bold text-white leading-tight">
+                  <div className="min-w-0 flex-1">
+                    <dt className="text-sm sm:text-[15px] font-extrabold text-white leading-snug">
                       {badge.title}
                     </dt>
-                    <dd className="text-xs text-slate-300 mt-0.5 truncate">
+                    <dd className="text-xs text-slate-300/90 font-medium mt-0.5 leading-relaxed">
                       {badge.subtitle}
                     </dd>
                   </div>
