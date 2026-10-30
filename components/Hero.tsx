@@ -126,7 +126,10 @@ export function Hero({ hero, business }: HeroProps) {
                     alt={hero.image.alt}
                     width={800}
                     height={600}
-                    priority
+                    preload
+                    loading="eager"
+                    fetchPriority="high"
+                    unoptimized={hero.image.src.endsWith('.svg')}
                     sizes="(max-width: 1024px) 100vw, 42vw"
                     className="h-auto w-full object-cover"
                   />
